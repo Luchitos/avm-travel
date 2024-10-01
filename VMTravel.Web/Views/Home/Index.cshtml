@@ -4,4 +4,46 @@
 
 <h2>Bienvenido a AVMTravel</h2>
 <p>Descubre los mejores tours y realiza tus reservas con nosotros.</p>
-<a href="@Url.Action("MostrarTours", "Tour")">Ver Tours Disponibles</a>
+
+<a href="@Url.Action("MostrarTours", "Tour")" class="btn-primary">Ver Tours Disponibles</a>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+        color: #333;
+    }
+
+    h2 {
+        text-align: center;
+        color: #009879;
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary {
+        display: block;
+        width: 200px;
+        margin: 0 auto;
+        padding: 12px 20px;
+        text-align: center;
+        background-color: #009879;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #007f65;
+    }
+
+</style>

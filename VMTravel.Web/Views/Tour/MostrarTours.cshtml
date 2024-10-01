@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<AVMTravel.Core.Entities.Tour>
 
-
 <h2>Tours Disponibles</h2>
 
 @if (TempData["SuccessMessage"] != null)
@@ -14,7 +13,7 @@
     <script>document.getElementById("successPopup").style.display = "block"; // Mostrar el popup</script>
 }
 
-<table>
+<table class="styled-table">
     <thead>
         <tr>
             <th>Nombre</th>
@@ -35,11 +34,11 @@
                 <td>@tour.FechaFin.ToShortDateString()</td>
                 <td>@tour.Precio.ToString("C")</td>
                 <td>
-                    <form action="@Url.Action("ReservarTour", "Tour")" method="post">
+                    <form action="@Url.Action("ReservarTour", "Tour")" method="post" class="reserve-form">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="tourId" value="@tour.Id" />
-                        <input type="text" name="cliente" placeholder="Nombre del cliente" required />
-                        <input type="submit" value="Reservar" />
+                        <input type="text" name="cliente" placeholder="Nombre del cliente" required class="input-field" />
+                        <input type="submit" value="Reservar" class="btn-reservar" />
                     </form>
                 </td>
             </tr>
@@ -48,6 +47,80 @@
 </table>
 
 <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f9;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 18px;
+        text-align: left;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+        .styled-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: #f3f3f3;
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+    .reserve-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input-field {
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn-reservar {
+        padding: 10px;
+        background-color: #009879;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-reservar:hover {
+            background-color: #007b65;
+        }
+
+    /* Popup Styles */
     #successPopup {
         position: fixed;
         left: 0;
@@ -67,6 +140,7 @@
         padding: 20px;
         border-radius: 5px;
         text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .close {
@@ -75,10 +149,12 @@
         position: absolute;
         right: 10px;
         top: 10px;
+        color: #333;
     }
 </style>
 
 <script>
     function closePopup() {
         document.getElementById("successPopup").style.display = "none"; // Cerrar el popup
-    }</script>
+    }
+</script>
