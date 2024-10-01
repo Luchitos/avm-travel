@@ -4,3 +4,6 @@
 /AVMTravel.Core/obj
 /AVMTravel.Infrastructure/bin
 /AVMTravel.Infrastructure/obj
+/AVMTravel.Service/bin
+/AVMTravel.Service/obj
+/packages/Antlr.3.5.0.2
