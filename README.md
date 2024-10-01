@@ -1,6 +1,4 @@
 # avm-travel
-Proyecto AVMTravel Challenge
-Ejercicio Desarrollador .Net – AMV Travel
 
 Instrucciones:
 Desarrollar una aplicación en ASP.NET (framework 4.5.2) y C#, con conexión a BD
