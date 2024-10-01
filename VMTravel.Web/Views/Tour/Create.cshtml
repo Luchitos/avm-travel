@@ -1,0 +1,62 @@
+﻿@model AVMTravel.Web.ViewModels.TourViewModel
+
+<h2>Crear Tour</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre)
+        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Destino)
+        @Html.EditorFor(model => model.Destino, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaInicio)
+        @Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FechaFin)
+        @Html.EditorFor(model => model.FechaFin, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Precio)
+        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+}
+<script>
+    $('#submitButton').on('click', function (e) {
+        e.preventDefault();
+
+        var token = $('input[name="__RequestVerificationToken"]').val();
+        var data = {
+            // Tu objeto de datos, por ejemplo:
+            Nombre: $('#nombre').val(),
+            __RequestVerificationToken: token // Incluye el token aquí
+        };
+
+        $.ajax({
+            url: '@Url.Action("Create", "Tour")', // Tu URL de acción
+            type: 'POST',
+            data: data,
+            success: function (response) {
+                // Maneja la respuesta
+                alert('Tour creado correctamente');
+            },
+            error: function () {
+                // Maneja los errores
+                alert('Error al crear el tour');
+            }
+        });
+    });
+</script>
+

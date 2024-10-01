@@ -1,0 +1,28 @@
+﻿@model AVMTravel.Web.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Iniciar Sesión</h2>
+@using (Html.BeginForm("Login", "Usuarios", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.CorreoElectronico, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.CorreoElectronico, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CorreoElectronico)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Contrasena, new { @class = "control-label" })
+        @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Contrasena)
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+    </div>
+    <p>No tienes una cuenta? <a href="@Url.Action("Register", "Usuarios")">Regístrate aquí</a>.</p>
+}

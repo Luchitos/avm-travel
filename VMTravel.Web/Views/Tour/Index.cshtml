@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AVMTravel.Web.ViewModels.TourViewModel>
+
+<h2>Tours Disponibles</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Destino</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Precio</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tour in Model)
+        {
+            <tr>
+                <td>@tour.Nombre</td>
+                <td>@tour.Destino</td>
+                <td>@tour.FechaInicio.ToShortDateString()</td>
+                <td>@tour.FechaFin.ToShortDateString()</td>
+                <td>@tour.Precio</td>
+            </tr>
+        }
+    </tbody>
+</table>

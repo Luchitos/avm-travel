@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AVMTravel.Core.Entities.Reserva>
+<h2>Reservas Realizadas</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha de Reserva</th>
+            <th>Tour</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.Cliente</td>
+                <td>@reserva.FechaReserva.ToShortDateString()</td>
+                <td>@reserva.Tour.Nombre</td>
+                <td>
+                    <form action="@Url.Action("EliminarReserva", "Reserva")" method="post">
+                        @Html.AntiForgeryToken()
+
+                        <input type="hidden" name="id" value="@reserva.Id" />
+                        <input type="submit" value="Eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar esta reserva?');" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+    $(document).ready(function() {
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Reserva Eliminada',
+                    text: '@TempData["SuccessMessage"]',
+                    showConfirmButton: true,
+                });
+            </text>
+        }
+    });
+</script>

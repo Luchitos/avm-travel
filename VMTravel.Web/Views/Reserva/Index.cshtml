@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AVMTravel.Web.ViewModels.ReservaViewModel>
+
+<h2>Lista de Reservas</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha de Reserva</th>
+            <th>Tour Reservado</th>
+            <th>Destino</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reserva in Model)
+        {
+            <tr>
+                <td>@reserva.Cliente</td>
+                <td>@reserva.FechaReserva.ToString("dd/MM/yyyy")</td>
+                <td>@reserva.Tour.Nombre</td> <!-- Mostrar el nombre del tour reservado -->
+                <td>@reserva.Tour.Destino</td> <!-- Mostrar el destino del tour -->
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = reserva.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = reserva.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>@Html.ActionLink("Agregar Nueva Reserva", "Create", null, new { @class = "btn btn-primary" })</p>

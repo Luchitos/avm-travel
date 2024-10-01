@@ -1,0 +1,84 @@
+﻿@model IEnumerable<AVMTravel.Core.Entities.Tour>
+
+
+<h2>Tours Disponibles</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successPopup" style="display:none;">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p>@TempData["SuccessMessage"]</p>
+        </div>
+    </div>
+    <script>document.getElementById("successPopup").style.display = "block"; // Mostrar el popup</script>
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Destino</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Precio</th>
+            <th>Reservar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tour in Model)
+        {
+            <tr>
+                <td>@tour.Nombre</td>
+                <td>@tour.Destino</td>
+                <td>@tour.FechaInicio.ToShortDateString()</td>
+                <td>@tour.FechaFin.ToShortDateString()</td>
+                <td>@tour.Precio.ToString("C")</td>
+                <td>
+                    <form action="@Url.Action("ReservarTour", "Tour")" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="tourId" value="@tour.Id" />
+                        <input type="text" name="cliente" placeholder="Nombre del cliente" required />
+                        <input type="submit" value="Reservar" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    #successPopup {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
+
+    .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .close {
+        cursor: pointer;
+        font-size: 20px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+</style>
+
+<script>
+    function closePopup() {
+        document.getElementById("successPopup").style.display = "none"; // Cerrar el popup
+    }</script>

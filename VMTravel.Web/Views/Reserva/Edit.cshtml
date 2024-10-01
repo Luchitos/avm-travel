@@ -1,0 +1,25 @@
+﻿@model AVMTravel.Web.ViewModels.ReservaViewModel
+
+<h2>Editar Reserva</h2>
+
+@using (Html.BeginForm("Edit", "Reserva", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Cliente)
+        @Html.TextBoxFor(m => m.Cliente, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FechaReserva)
+        @Html.TextBoxFor(m => m.FechaReserva, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TourId, "Tour Reservado")
+        @Html.DropDownListFor(m => m.TourId, ViewBag.Tours as SelectList, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar Cambios</button>
+}
