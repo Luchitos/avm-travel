@@ -2,3 +2,5 @@
 /.vs
 /AVMTravel.Core/bin
 /AVMTravel.Core/obj
+/AVMTravel.Infrastructure/bin
+/AVMTravel.Infrastructure/obj
